@@ -1,16 +1,16 @@
 
 
 $(document).ready(function () {
-    console.log("START!");
+  console.log("START!");
 });
 
 var videoGameCharacters = ["mario", "luigi", "donkeyKong", "peach", "yoshi", "link", "zelda", "pikachu", "samus", "bowser", "koopa"]
 
-function addVideoGameCharacter(){
+function addVideoGameCharacter() {
   $("buttons-view").empty();
 
   // for loop that goes through array of preset game characters
-  for(var i = 0; i < videoGameCharacters.length; i++){
+  for (var i = 0; i < videoGameCharacters.length; i++) {
     // new variable turning array objects into buttons
     var b = $("<button>");
     b.addClass("newGif");
@@ -30,12 +30,25 @@ $("#userGif").on("click", function (event) {
 addNewGif();
 
 // Creating a function that allows the gifs to be appear by piecing the API URL with the new search by user
-function gifsAppear(){
+function gifsAppear() {
   var api = "BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10"
   var newGif = $(this).attr("data-name");
   console.log(newGif);
   var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + newGif + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
   $("#gifImage").empty();
 
-  
+  // using ajax function that we used in activity 13 of AJAX class activity
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  })
+    .then(function (response) {
+      var results = response.data;
+
+      for (var i = 0; i < results.length; i++) {
+        var r = $("<div>").text("Rating: " + results[i].rating +"   ");
+        var imageStill = results[i].images.fixed_height_still.url;
+        var imageAnimate = results[i].images.fixed_height.url;
+        var videoGameImage = $("<img>");
+      })
 }
