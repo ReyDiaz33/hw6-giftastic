@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <!-- bootstrap link -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <title>Giftastic</title>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Character buttons -->
+        <button data-person="mario" class="gif">Mario</button>
+
+        <button data-person="princessPeach" class="gif">Princess Peach</button>
+
+        <button data-person="luigi" class="gif">Luigi </button>
+
+        <button data-person="donkeyKong" class="gif">Donkey Kong</button>
+
+        <button data-person="pikachu" class="gif">Pikachu</button>
+
+        <button data-person="samus" class="gif">Samus</button>
+
+        <button data-person="koopa" class="gif">Koopa</button>
+
+        <button data-person="bowser" class="gif">Bowser</button>
+      </div>
+      <div class="col-md-6">
+
+        <form id="gif-form">
+          <label for="gif-input">
+            <h4>Add Your Own Gif!</h4>
+          </label>
+          <br>
+          <input type="text" id="gif-input"><br>
+
+          <!-- Button adds new Gif typed by user-->
+          <input id="userGif" type="submit" value="Add Gif">
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="gifs-appear-here">
+
+
+
+<!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- link to JS file -->
+    <script src="assets/js/giftastic.js"></script>
+
+  </div>
+
+</body>
+
+</html>
