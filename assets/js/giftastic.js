@@ -3,7 +3,7 @@ $(document).ready(function () {
 // made my global variables
   var apiKey = "BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
   var apiUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey;
-  var videoGameCharacters = ["mario", "luigi", "donkeyKong", "peach", "yoshi", "link", "zelda", "pikachu", "samus", "bowser", "koopa"];
+  var videoGameCharacters = ["Mario", "Luigi", "Donkey Kong", "Peach", "Yoshi", "Link", "Zelda", "Pikachu", "Samus", "Bowser", "Koopa"];
 // function that will build buttons
   function buildButtons() {
 
@@ -27,15 +27,20 @@ $(document).ready(function () {
   function selectCharacter(character) {
     
     var queryString = '&q=' + character || null;
-
+// my ajax call to get the info needed for the gifs. 
     $.ajax({
       url: apiUrl + queryString,
       method: "GET"
     }).then(function (response) {
 
          $('#gifImage').empty();
-
+        // map is the easier way of looping. 
         response.data.map(function(gif) {
+          console.log(gif.rating);
+
+
+          var d = $("<div>");
+          d.addClass("imageContainer");
 
           var img = $("<img>");
           img.addClass('gif');
@@ -45,7 +50,7 @@ $(document).ready(function () {
           img.attr("data-still", gif.images.original_still.url);
           img.attr("data-state", "still");
           
-          // on click function that selects the still image and the original gif.
+          // on click function that selects the still image and the original gif. click events worked in here rather than the end of the file. 
           img.on("click", function() {
 
             var state = $(img).attr("data-state");
@@ -56,11 +61,15 @@ $(document).ready(function () {
               $(this).attr("src", $(this).attr("data-still"));
               $(this).attr("data-state", "still");
             }
-
+            
           });
-          
-          $('#gifImage').append(img);
+          var rating = $("<p>");
+          rating.addClass("rating");
+          rating.html("Rating: " +gif.rating);
 
+          d.append(rating).append(img);
+          $('#gifImage').append(d);
+          
         });
       
     });
