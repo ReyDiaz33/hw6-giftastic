@@ -4,12 +4,13 @@ $(document).ready(function () {
   var apiKey = "BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
   var apiUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey;
   var videoGameCharacters = ["mario", "luigi", "donkeyKong", "peach", "yoshi", "link", "zelda", "pikachu", "samus", "bowser", "koopa"];
-// function that will build buttons 
+// function that will build buttons
   function buildButtons() {
 
     $("#buttons-view").empty();   
-
+// for loop that goes throught the array at the top of the js file
     for (var i = 0; i < videoGameCharacters.length; i++) {
+      // variable b to make a button 
       var b = $("<button>");
       b.addClass("selectCharacter");
       b.attr("data-name", videoGameCharacters[i]);
@@ -25,9 +26,6 @@ $(document).ready(function () {
 
   function selectCharacter(character) {
     
-    // Even though it is not likely that no query will be enterd (ie. someone creates a blank button), it is good 
-    // to guard against that type of behavior should something sneak by. Ideally, if the query string was blank you 
-    // should not allow the code to continue. This is known as validation. 
     var queryString = '&q=' + character || null;
 
     $.ajax({
@@ -47,6 +45,7 @@ $(document).ready(function () {
           img.attr("data-still", gif.images.original_still.url);
           img.attr("data-state", "still");
           
+          // on click function that selects the still image and the original gif.
           img.on("click", function() {
 
             var state = $(img).attr("data-state");
@@ -79,24 +78,6 @@ $(document).ready(function () {
 
   });
 
-/*
-  $(".gif").on("click", function() {
-
-      console.info('clicked', this);
-      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-      var state = $(this).attr("data-state") || still;
-      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-      // Then, set the image's data-state to animate
-      // Else set src to the data-still value
-      if (state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
-      } else {
-        $(this).attr("src", $(this).attr("data-still"));
-        $(this).attr("data-state", "still");
-      }
-    });
-*/
 
   buildButtons();
 
